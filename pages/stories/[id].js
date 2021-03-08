@@ -1,20 +1,18 @@
 import { APIFetch } from "../../utils/APIFetch";
 import { Layout } from "../../components/Layout";
-import Router from "next/router";
-import { CharacterCard } from "../../components/CharacterCard";
 
-export default function CharacterPage({ character }) {
-  const { name, description, thumbnail, stories, comics } = character[0];
-  const imgUrl = thumbnail.path + "." + thumbnail.extension;
-  console.log(stories);
+export default function StoryPage({ character }) {
+  const { title, description, thumbnail, characters, comics } = character[0];
+  const imgUrl = thumbnail?.path + "." + thumbnail?.extension;
+
   return (
     <Layout>
       <main className="main section-character">
         <div className="container">
           <div className="character">
-            <img src={imgUrl} alt={name} className="character__photo" />
+            <img src={imgUrl} alt={title} className="character__photo" />
             <div className="character__text-wrap">
-              <h2 className="character__title">{name}</h2>
+              <h2 className="character__title">{title}</h2>
               <p className="character__description">{description}</p>
             </div>
           </div>
@@ -39,23 +37,6 @@ export default function CharacterPage({ character }) {
                   })}
               </ul>
             </div>
-            <div className="character-stories">
-              {stories?.items.length > 0 ? (
-                <h4 className="character-stories__title">stories:</h4>
-              ) : (
-                ""
-              )}
-              <ul className="character-stories__list">
-                {stories?.items &&
-                  stories.items.map((el) => {
-                    return (
-                      <li className="character-stories__item" key={el.name}>
-                        <p>{el.name}</p>
-                      </li>
-                    );
-                  })}
-              </ul>
-            </div>
           </div>
         </div>
       </main>
@@ -68,7 +49,7 @@ export async function getServerSideProps({ query }) {
   try {
     const {
       data: { results: character },
-    } = await APIFetch(`/characters/${id}?`);
+    } = await APIFetch(`/stories/${id}?`);
     return {
       props: { character },
     };

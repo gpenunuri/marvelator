@@ -8,7 +8,7 @@ export default function Home() {
         <h1 className="main__title">
           BROWSING MARVEL INFO NEVER WAS THIS EASY
         </h1>
-        <Searchbar />
+        <Searchbar base={"character"} param={"name"} paramValue={""} />
         <p className="main__description">Find your favorite Character!</p>
       </main>
     </Layout>
