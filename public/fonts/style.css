@@ -1,0 +1,5 @@
+@font-face {
+  font-family: "BentonSans";
+  src: url("BentonSans.woff") format("woff"),
+    url("BentonSans.otf") format("otf");
+}
